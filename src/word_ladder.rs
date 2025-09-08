@@ -9,8 +9,12 @@ pub fn greeting(name: Option<&str>) -> String {
     }
 }
 
-pub fn word_ladder(start: &str, _end: &str, _dictionary: HashSet<String>) -> Result<Vec<String>,WordNotFoundError> {
-    Err(WordNotFoundError { word: start.to_string() })
+pub fn word_ladder(start: &str, end: &str, dictionary: HashSet<String>) -> Result<Vec<String>,WordNotFoundError> {
+    if ! dictionary.contains(start) {
+        Err(WordNotFoundError { word: start.to_string() })
+    } else {
+        Err(WordNotFoundError { word: end.to_string() })
+    }
 }
 
 #[cfg(test)]
@@ -31,5 +35,13 @@ mod tests {
     fn word_ladder_with_non_existing_start_word_results_in_error() {
         let Err(e) = word_ladder("foo","bar", HashSet::new()) else { todo!() } ;
         assert_eq!(e, WordNotFoundError { word: String::from("foo") })
+    }
+
+    #[test]
+    fn word_ladder_with_non_existing_end_word_results_in_error() {
+        let mut dictionary: HashSet<String> = HashSet::new();
+        let _ = dictionary.insert(String::from("foo"));
+        let Err(e) = word_ladder("foo","bar", dictionary) else { todo!() } ;
+        assert_eq!(e, WordNotFoundError { word: String::from("bar") })
     }
 }
