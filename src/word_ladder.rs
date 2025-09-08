@@ -1,4 +1,4 @@
-fn greeting(name: Option<&str>) -> String {
+pub fn greeting(name: Option<&str>) -> String {
     match name {
         Some(s) => format!("hello, {}!", s),
         None => String::from("hello, world!"),
