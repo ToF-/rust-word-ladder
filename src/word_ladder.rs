@@ -57,5 +57,6 @@ mod tests {
         let _ = dictionary.insert(String::from("bar"));
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_ok(), true);
+        assert_eq!(result.unwrap().len(), 0);
     }
 }
