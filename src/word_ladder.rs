@@ -9,15 +9,35 @@ pub fn greeting(name: Option<&str>) -> String {
     }
 }
 
+fn neighbor(a: &str, b: &str) -> bool {
+    let mut count: usize = 0;
+    for (i, char_a) in a.chars().enumerate() {
+        match b.chars().nth(i) {
+            None => return false,
+            Some(char_b) => {
+                if char_b != char_a {
+                    count+= 1;
+                    if count > 1 {
+                        return false
+                    }
+                };
+            },
+        }
+    };
+    count == 1
+}
+
 pub fn word_ladder(start: &str, end: &str, dictionary: HashSet<String>) -> Result<Vec<String>,WordNotFoundError> {
     if ! dictionary.contains(start) {
         Err(WordNotFoundError { word: start.to_string() })
     } else if ! dictionary.contains(end) {
         Err(WordNotFoundError { word: end.to_string() })
-    } else if start == "dog" {
-        Ok(vec![String::from("dog"), String::from("fog")])
     } else {
-        Ok(vec![])
+        if neighbor(start, end) {
+            Ok(vec![String::from(start), String::from(end)])
+        } else {
+            Ok(vec![])
+        }
     }
 }
 
@@ -70,5 +90,14 @@ mod tests {
         let result = word_ladder("dog","fog", dictionary);
         assert_eq!(result.is_ok(), true);
         assert_eq!(result.unwrap(), [String::from("dog"),String::from("fog")]);
+    }
+    #[test]
+    fn another_word_ladder_with_one_rung() {
+        let mut dictionary: HashSet<String> = HashSet::new();
+        let _ = dictionary.insert(String::from("dog"));
+        let _ = dictionary.insert(String::from("fog"));
+        let result = word_ladder("fog","dog", dictionary);
+        assert_eq!(result.is_ok(), true);
+        assert_eq!(result.unwrap(), [String::from("fog"),String::from("dog")]);
     }
 }
