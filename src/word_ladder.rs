@@ -12,8 +12,10 @@ pub fn greeting(name: Option<&str>) -> String {
 pub fn word_ladder(start: &str, end: &str, dictionary: HashSet<String>) -> Result<Vec<String>,WordNotFoundError> {
     if ! dictionary.contains(start) {
         Err(WordNotFoundError { word: start.to_string() })
-    } else {
+    } else if ! dictionary.contains(end) {
         Err(WordNotFoundError { word: end.to_string() })
+    } else {
+        Ok(vec![])
     }
 }
 
@@ -46,5 +48,14 @@ mod tests {
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_err(), true);
         assert_eq!(result.unwrap_err(), WordNotFoundError { word: String::from("bar") })
+    }
+
+    #[test]
+    fn no_word_ladder_found_results_in_empty_list() {
+        let mut dictionary: HashSet<String> = HashSet::new();
+        let _ = dictionary.insert(String::from("foo"));
+        let _ = dictionary.insert(String::from("bar"));
+        let result = word_ladder("foo","bar", dictionary);
+        assert_eq!(result.is_ok(), true);
     }
 }
