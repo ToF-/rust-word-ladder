@@ -41,7 +41,8 @@ mod tests {
     fn word_ladder_with_non_existing_end_word_results_in_error() {
         let mut dictionary: HashSet<String> = HashSet::new();
         let _ = dictionary.insert(String::from("foo"));
-        let Err(e) = word_ladder("foo","bar", dictionary) else { todo!() } ;
-        assert_eq!(e, WordNotFoundError { word: String::from("bar") })
+        let result = word_ladder("foo","bar", dictionary);
+        assert_eq!(result.is_err(), true);
+        assert_eq!(result.unwrap_err(), WordNotFoundError { word: String::from("bar") })
     }
 }
