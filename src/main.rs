@@ -2,6 +2,7 @@ use std::env;
 use crate::word_ladder::greeting;
 
 mod word_ladder;
+mod error;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
