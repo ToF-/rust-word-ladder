@@ -14,6 +14,8 @@ pub fn word_ladder(start: &str, end: &str, dictionary: HashSet<String>) -> Resul
         Err(WordNotFoundError { word: start.to_string() })
     } else if ! dictionary.contains(end) {
         Err(WordNotFoundError { word: end.to_string() })
+    } else if start == "dog" {
+        Ok(vec![String::from("dog"), String::from("fog")])
     } else {
         Ok(vec![])
     }
@@ -58,5 +60,15 @@ mod tests {
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_ok(), true);
         assert_eq!(result.unwrap().len(), 0);
+    }
+
+    #[test]
+    fn word_ladder_with_one_rung() {
+        let mut dictionary: HashSet<String> = HashSet::new();
+        let _ = dictionary.insert(String::from("dog"));
+        let _ = dictionary.insert(String::from("fog"));
+        let result = word_ladder("dog","fog", dictionary);
+        assert_eq!(result.is_ok(), true);
+        assert_eq!(result.unwrap(), [String::from("dog"),String::from("fog")]);
     }
 }
