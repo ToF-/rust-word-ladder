@@ -9,3 +9,8 @@ pub fn new_dictionary(words: Vec<&str>) -> Dictionary {
         };
         result
     }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+}
