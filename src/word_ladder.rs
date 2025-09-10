@@ -55,16 +55,14 @@ mod tests {
 
     #[test]
     fn word_ladder_with_non_existing_start_word_results_in_error() {
-        assert_eq!(word_ladder("foo", "bar", new_dictionary(vec!{})).unwrap_err(),
+        assert_eq!(word_ladder("foo", "bar", new_dictionary(vec![])).unwrap_err(),
             WordNotFoundError { word: String::from("foo") })
     }
 
     #[test]
     fn word_ladder_with_non_existing_end_word_results_in_error() {
-        let dictionary: Dictionary = new_dictionary(vec!["foo"]);
-        let result = word_ladder("foo","bar", dictionary);
-        assert_eq!(result.is_err(), true);
-        assert_eq!(result.unwrap_err(), WordNotFoundError { word: String::from("bar") })
+        assert_eq!(word_ladder("foo","bar",new_dictionary(vec!["foo"])).unwrap_err(),
+        WordNotFoundError { word: String::from("bar") })
     }
 
     #[test]
