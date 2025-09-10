@@ -4,6 +4,13 @@ use std::collections::{HashMap, HashSet};
 
 pub type Dictionary = HashSet<String>;
 
+pub fn new_dictionary(words: Vec<&str>) -> Dictionary {
+        let mut result = Dictionary::new();
+        for word in words {
+            let _ = result.insert(word.to_string());
+        };
+        result
+    }
 pub fn greeting(name: Option<&str>) -> String {
     match name {
         Some(s) => format!("hello, {}!", s),
@@ -21,10 +28,11 @@ fn neighbor(a: &str, b: &str) -> bool {
 fn follow_ladder(ladder: HashMap<String, Option<String>>, start: &str, end: &str) -> Vec<String> {
     let mut result: Vec<String> = vec![end.to_string()];
     let mut rung: Option<String> = Some(end.to_string());
-    while let Some(rung) = ladder.get(&rung.clone().unwrap()) {
-        match rung {
+    while let Some(target) = ladder.get(&rung.clone().unwrap()) {
+        match target {
             Some(word) => { 
                 result.insert(0, word.to_string());
+                rung = Some(word.to_string());
                 if word == start {
                     return result
                 };
@@ -36,29 +44,34 @@ fn follow_ladder(ladder: HashMap<String, Option<String>>, start: &str, end: &str
     };
     return vec![]
 }
-pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {
+pub fn word_ladder(start: &str, end: &str, mut dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {
     if ! dictionary.contains(start) {
         Err(WordNotFoundError { word: start.to_string() })
     } else if ! dictionary.contains(end) {
         Err(WordNotFoundError { word: end.to_string() })
     } else {
-        let mut queue: Vec<&str> = vec![];
+        let mut queue: Vec<String> = vec![];
         let mut ladder: HashMap<String,Option<String>> = HashMap::new();
-        queue.push(start);
+        queue.push(start.to_string());
         ladder.insert(start.to_string(), None);
         while !queue.is_empty() {
-            let rung: &str = queue.pop().unwrap();
-            let neighors = dictionary.clone()
+            println!("{:?} {:?} {:?}", queue, ladder, dictionary);
+            let rung = queue.pop().unwrap();
+            let neighbors = dictionary.clone()
                 .into_iter()
-                .filter(|w| neighbor(rung, w));
-            for next in neighors {
+                .filter(|w| neighbor(&rung, w));
+            for next in neighbors {
+                dictionary.remove(&next);
+                println!("{:?}", next.clone());
                 ladder.insert(next.clone(), Some(rung.to_string()));
                 if next.clone() == end {
+                    println!("bingo");
                     return Ok(follow_ladder(ladder, start, end))
+                } else {
+                    queue.push(next.clone());
                 }
             }
         };
-        println!("{:?}", ladder);
 
 
         let mut first: String = String::from("");
@@ -86,13 +99,6 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
 mod tests {
     use super::*;
 
-    fn new_dictionary(words: Vec<&str>) -> Dictionary {
-        let mut result = Dictionary::new();
-        for word in words {
-            let _ = result.insert(word.to_string());
-        };
-        result
-    }
     #[test]
     fn test_greeting_with_none_argument_is_just_hello_world() {
         assert_eq!(greeting(None), "hello, world!")
@@ -122,7 +128,6 @@ mod tests {
 
     #[test]
     fn word_ladder_with_one_rung() {
-        let dictionary: Dictionary = new_dictionary(vec!["dog", "fog"]);
         assert_eq!(word_ladder("dog","fog",new_dictionary(vec!["dog","fog"])).unwrap(),
             [String::from("dog"),String::from("fog")]);
     }
@@ -130,5 +135,10 @@ mod tests {
     fn another_word_ladder_with_one_rung() {
         assert_eq!(word_ladder("fog","dog",new_dictionary(vec!["dog","fog"])).unwrap(),
             [String::from("fog"),String::from("dog")]);
+    }
+    #[test]
+    fn word_ladder_with_two_rungs() {
+        assert_eq!(word_ladder("dog","cot",new_dictionary(vec!["dog","cog","cot"])).unwrap(),
+            [String::from("dog"),String::from("cog"), String::from("cot")]);
     }
 }

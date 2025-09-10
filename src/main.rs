@@ -1,15 +1,10 @@
 use std::env;
-use crate::word_ladder::greeting;
+use crate::word_ladder::{Dictionary, new_dictionary, word_ladder};
 
 mod word_ladder;
 mod error;
 
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    if args.len() > 1 {
-        println!("{}", greeting(Some(&args[1].clone())))
-    } else {
-        println!("{}", greeting(None))
+    println!("{:?}", word_ladder("dog","cot",new_dictionary(vec!["dog","cog","cot"])));
     }
-}
 
