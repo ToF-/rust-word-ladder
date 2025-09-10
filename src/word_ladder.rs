@@ -19,6 +19,9 @@ fn neighbor(a: &str, b: &str) -> bool {
 }
 
 fn find_ladder(queue: &mut Vec<&str>, ladder: &mut HashMap<&str,Option<&str>>, end: &str) {
+    while !queue.is_empty() {
+        let rung: &str = queue.pop().unwrap();
+    }
 
 }
 pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {
