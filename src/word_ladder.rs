@@ -51,9 +51,6 @@ pub fn word_ladder(start: &str, end: &str, mut dictionary: Dictionary) -> Result
         queue.push_back(start.to_string());
         ladder.insert(start.to_string(), None);
         while !queue.is_empty() {
-            let mut response = String::new();
-            let stdin = io::stdin();
-            stdin.read_line(&mut response).expect("can't read from stdin");
             let rung = queue.pop_front().unwrap();
             if rung == end {
                 return Ok(follow_ladder(ladder, start, end))
