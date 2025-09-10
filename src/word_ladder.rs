@@ -11,10 +11,13 @@ pub fn greeting(name: Option<&str>) -> String {
 }
 
 fn neighbor(a: &str, b: &str) -> bool {
-    assert!(a.len() == b.len());
-    a.chars().zip(b.chars())
-        .filter(|(a_char, b_char)| a_char != b_char)
-        .count() == 1
+    if a.len() != b.len() {
+        false
+    } else {
+        a.chars().zip(b.chars())
+            .filter(|(a_char, b_char)| a_char != b_char)
+            .count() == 1
+    }
 }
 
 fn follow_ladder(ladder: HashMap<String, Option<String>>, start: &str, end: &str) -> Vec<String> {
