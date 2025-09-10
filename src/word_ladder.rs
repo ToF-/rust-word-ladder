@@ -30,7 +30,7 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
         match dict.take(start) {
             Some(word) => {
                 let first = word.to_string();
-                let neighbors: Dictionary = dict.extract_if(|w| neighbor(&first, w)).collect();
+                let neighbors: Dictionary = dict.into_iter().filter(|w| neighbor(&first, w)).collect();
                 match neighbors.iter().next() {
                     Some(word) => {
                         let last = word.to_string();
