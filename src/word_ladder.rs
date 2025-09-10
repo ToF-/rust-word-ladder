@@ -24,13 +24,25 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
     } else if ! dictionary.contains(end) {
         Err(WordNotFoundError { word: end.to_string() })
     } else {
-        let first: String = start.to_string();
-        if neighbor(start, end) {
-            Ok(vec![String::from(start), String::from(end)])
-        } else {
+        let mut first: String = String::from("");
+        let mut last: String = String::from("");
+        let mut dict = dictionary.clone();
+        match dict.take(start) {
+            Some(word) => {
+                let first = word.to_string();
+                let neighbors: Dictionary = dict.extract_if(|w| neighbor(&first, w)).collect();
+                match neighbors.iter().next() {
+                    Some(word) => {
+                        let last = word.to_string();
+                        return Ok(vec![first, last])
+                    },
+                    None => {} ,
+                };
+            },
+            None => {},
+            }
             Ok(vec![])
         }
-    }
 }
 
 #[cfg(test)]
