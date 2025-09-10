@@ -13,20 +13,10 @@ pub fn greeting(name: Option<&str>) -> String {
 
 fn neighbor(a: &str, b: &str) -> bool {
     assert!(a.len() == b.len());
-    let mut count: usize = 0;
-    for (i, char_a) in a.chars().enumerate() {
-        match b.chars().nth(i) {
-            None => return false,
-            Some(char_b) => {
-                if char_b != char_a {
-                    count+= 1;
-                    if count > 1 {
-                        return false
-                    }
-                };
-            },
-        }
-    };
+    let a_chars = a.chars();
+    let b_chars = b.chars();
+    let mut zip = a_chars.zip(b_chars);
+    let count = zip.filter(|(a_char, b_char)| a_char != b_char).count();
     count == 1
 }
 
