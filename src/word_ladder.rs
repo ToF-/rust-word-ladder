@@ -45,6 +45,9 @@ pub fn word_ladder(start: &str, end: &str, dictionary: HashSet<String>) -> Resul
 mod tests {
     use super::*;
 
+    fn new_dictionary(words: Vec<&str>) -> HashSet<String> {
+        HashSet::new()
+    }
     #[test]
     fn test_greeting_with_none_argument_is_just_hello_world() {
         assert_eq!(greeting(None), "hello, world!")
