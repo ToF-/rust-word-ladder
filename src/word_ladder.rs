@@ -1,16 +1,8 @@
 use std::error::Error;
 use crate::error::WordNotFoundError;
 use std::collections::{HashMap, HashSet};
+use crate::dictionary::{Dictionary, new_dictionary};
 
-pub type Dictionary = HashSet<String>;
-
-pub fn new_dictionary(words: Vec<&str>) -> Dictionary {
-        let mut result = Dictionary::new();
-        for word in words {
-            let _ = result.insert(word.to_string());
-        };
-        result
-    }
 pub fn greeting(name: Option<&str>) -> String {
     match name {
         Some(s) => format!("hello, {}!", s),
