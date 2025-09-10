@@ -51,15 +51,15 @@ pub fn word_ladder(start: &str, end: &str, mut dictionary: Dictionary) -> Result
         ladder.insert(start.to_string(), None);
         while !queue.is_empty() {
             let rung = queue.pop().unwrap();
-            let neighbors = dictionary.clone()
-                .into_iter()
-                .filter(|w| neighbor(&rung, w));
-            for next in neighbors {
-                dictionary.remove(&next);
-                ladder.insert(next.clone(), Some(rung.to_string()));
-                if next.clone() == end {
-                    return Ok(follow_ladder(ladder, start, end))
-                } else {
+            if rung == end {
+                return Ok(follow_ladder(ladder, start, end))
+            } else {
+                let neighbors = dictionary.clone()
+                    .into_iter()
+                    .filter(|w| neighbor(&rung, w));
+                for next in neighbors {
+                    dictionary.remove(&next);
+                    ladder.insert(next.clone(), Some(rung.to_string()));
                     queue.push(next.clone());
                 }
             }
