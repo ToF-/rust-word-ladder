@@ -97,9 +97,7 @@ mod tests {
     }
     #[test]
     fn another_word_ladder_with_one_rung() {
-        let mut dictionary: Dictionary = Dictionary::new();
-        let _ = dictionary.insert(String::from("dog"));
-        let _ = dictionary.insert(String::from("fog"));
+        let mut dictionary: Dictionary = new_dictionary(vec!["dog", "fog"]);
         let result = word_ladder("fog","dog", dictionary);
         assert_eq!(result.is_ok(), true);
         assert_eq!(result.unwrap(), [String::from("fog"),String::from("dog")]);
