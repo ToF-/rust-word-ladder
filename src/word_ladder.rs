@@ -18,9 +18,10 @@ fn neighbor(a: &str, b: &str) -> bool {
         .count() == 1
 }
 
-fn find_ladder(queue: &mut Vec<&str>, ladder: &mut HashMap<&str,Option<&str>>, end: &str) {
+fn find_ladder(queue: &mut Vec<&str>, ladder: &mut HashMap<&str,Option<&str>>, end: &str, dictionary: &Dictionary) {
     while !queue.is_empty() {
         let rung: &str = queue.pop().unwrap();
+
     }
 
 }
@@ -33,7 +34,7 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
         let mut queue: Vec<&str> = vec![];
         let mut ladder: HashMap<&str,Option<&str>> = HashMap::new();
         queue.push(start);
-        find_ladder(&mut queue, &mut ladder, end);
+        find_ladder(&mut queue, &mut ladder, end, &dictionary);
 
 
         let mut first: String = String::from("");
