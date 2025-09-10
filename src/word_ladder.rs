@@ -18,13 +18,6 @@ fn neighbor(a: &str, b: &str) -> bool {
         .count() == 1
 }
 
-fn find_ladder(queue: &mut Vec<&str>, ladder: &mut HashMap<&str,Option<&str>>, end: &str, dictionary: &Dictionary) {
-    while !queue.is_empty() {
-        let rung: &str = queue.pop().unwrap();
-
-    }
-
-}
 pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {
     if ! dictionary.contains(start) {
         Err(WordNotFoundError { word: start.to_string() })
@@ -32,9 +25,18 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
         Err(WordNotFoundError { word: end.to_string() })
     } else {
         let mut queue: Vec<&str> = vec![];
-        let mut ladder: HashMap<&str,Option<&str>> = HashMap::new();
+        let mut ladder: HashMap<String,Option<String>> = HashMap::new();
         queue.push(start);
-        find_ladder(&mut queue, &mut ladder, end, &dictionary);
+        ladder.insert(start.to_string(), None);
+        while !queue.is_empty() {
+            let rung: &str = queue.pop().unwrap();
+            let neighors = dictionary.clone()
+                .into_iter()
+                .filter(|w| neighbor(rung, w));
+            for next in neighors {
+                ladder.insert(next, Some(rung.to_string()));
+            }
+        };
 
 
         let mut first: String = String::from("");
