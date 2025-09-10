@@ -1,3 +1,4 @@
+use std::io;
 use std::error::Error;
 use crate::error::WordNotFoundError;
 use std::collections::{HashMap, HashSet};
@@ -50,6 +51,10 @@ pub fn word_ladder(start: &str, end: &str, mut dictionary: Dictionary) -> Result
         queue.push(start.to_string());
         ladder.insert(start.to_string(), None);
         while !queue.is_empty() {
+            println!("{:?}", queue);
+            let mut response = String::new();
+            let stdin = io::stdin();
+            stdin.read_line(&mut response).expect("can't read from stdin");
             let rung = queue.pop().unwrap();
             if rung == end {
                 return Ok(follow_ladder(ladder, start, end))
