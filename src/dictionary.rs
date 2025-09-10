@@ -13,4 +13,8 @@ pub fn new_dictionary(words: Vec<&str>) -> Dictionary {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn loading_an_external_file() {
+    }
 }
