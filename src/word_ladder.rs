@@ -50,17 +50,14 @@ pub fn word_ladder(start: &str, end: &str, mut dictionary: Dictionary) -> Result
         queue.push(start.to_string());
         ladder.insert(start.to_string(), None);
         while !queue.is_empty() {
-            println!("{:?} {:?} {:?}", queue, ladder, dictionary);
             let rung = queue.pop().unwrap();
             let neighbors = dictionary.clone()
                 .into_iter()
                 .filter(|w| neighbor(&rung, w));
             for next in neighbors {
                 dictionary.remove(&next);
-                println!("{:?}", next.clone());
                 ladder.insert(next.clone(), Some(rung.to_string()));
                 if next.clone() == end {
-                    println!("bingo");
                     return Ok(follow_ladder(ladder, start, end))
                 } else {
                     queue.push(next.clone());
