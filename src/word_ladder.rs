@@ -29,7 +29,7 @@ fn neighbor(a: &str, b: &str) -> bool {
     count == 1
 }
 
-pub fn word_ladder(start: &str, end: &str, dictionary: HashSet<String>) -> Result<Vec<String>,WordNotFoundError> {
+pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {
     if ! dictionary.contains(start) {
         Err(WordNotFoundError { word: start.to_string() })
     } else if ! dictionary.contains(end) {
@@ -47,8 +47,8 @@ pub fn word_ladder(start: &str, end: &str, dictionary: HashSet<String>) -> Resul
 mod tests {
     use super::*;
 
-    fn new_dictionary(words: Vec<&str>) -> HashSet<String> {
-        HashSet::new()
+    fn new_dictionary(words: Vec<&str>) -> Dictionary {
+        Dictionary::new()
     }
     #[test]
     fn test_greeting_with_none_argument_is_just_hello_world() {
@@ -62,7 +62,7 @@ mod tests {
 
     #[test]
     fn word_ladder_with_non_existing_start_word_results_in_error() {
-        let dictionary: HashSet<String> = HashSet::new();
+        let dictionary: Dictionary = Dictionary::new();
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_err(), true);
         assert_eq!(result.unwrap_err(), WordNotFoundError { word: String::from("foo") })
@@ -70,7 +70,7 @@ mod tests {
 
     #[test]
     fn word_ladder_with_non_existing_end_word_results_in_error() {
-        let mut dictionary: HashSet<String> = HashSet::new();
+        let mut dictionary: Dictionary = Dictionary::new();
         let _ = dictionary.insert(String::from("foo"));
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_err(), true);
@@ -79,7 +79,7 @@ mod tests {
 
     #[test]
     fn no_word_ladder_found_results_in_empty_list() {
-        let mut dictionary: HashSet<String> = HashSet::new();
+        let mut dictionary: Dictionary = Dictionary::new();
         let _ = dictionary.insert(String::from("foo"));
         let _ = dictionary.insert(String::from("bar"));
         let result = word_ladder("foo","bar", dictionary);
@@ -89,7 +89,7 @@ mod tests {
 
     #[test]
     fn word_ladder_with_one_rung() {
-        let mut dictionary: HashSet<String> = HashSet::new();
+        let mut dictionary: Dictionary = Dictionary::new();
         let _ = dictionary.insert(String::from("dog"));
         let _ = dictionary.insert(String::from("fog"));
         let result = word_ladder("dog","fog", dictionary);
@@ -98,7 +98,7 @@ mod tests {
     }
     #[test]
     fn another_word_ladder_with_one_rung() {
-        let mut dictionary: HashSet<String> = HashSet::new();
+        let mut dictionary: Dictionary = Dictionary::new();
         let _ = dictionary.insert(String::from("dog"));
         let _ = dictionary.insert(String::from("fog"));
         let result = word_ladder("fog","dog", dictionary);
