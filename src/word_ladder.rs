@@ -1,6 +1,6 @@
 use std::error::Error;
 use crate::error::WordNotFoundError;
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 pub type Dictionary = HashSet<String>;
 
@@ -25,6 +25,7 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
         Err(WordNotFoundError { word: end.to_string() })
     } else {
         let queue: Vec<&str> = vec![start];
+        let ladder: HashMap<String,Option<String>> = HashMap::new();
         let mut first: String = String::from("");
         let mut last: String = String::from("");
         let mut dict = dictionary.clone();
