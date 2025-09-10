@@ -67,10 +67,7 @@ mod tests {
 
     #[test]
     fn no_word_ladder_found_results_in_empty_list() {
-        let dictionary: Dictionary = new_dictionary(vec!["foo", "bar"]);
-        let result = word_ladder("foo","bar", dictionary);
-        assert_eq!(result.is_ok(), true);
-        assert_eq!(result.unwrap().len(), 0);
+        assert_eq!(word_ladder("foo","bar",new_dictionary(vec!["foo","bar"])).unwrap().len(), 0);
     }
 
     #[test]
