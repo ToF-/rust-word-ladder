@@ -37,6 +37,7 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
                 ladder.insert(next, Some(rung.to_string()));
             }
         };
+        println!("{:?}", ladder);
 
 
         let mut first: String = String::from("");
