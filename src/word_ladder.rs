@@ -63,7 +63,7 @@ mod tests {
 
     #[test]
     fn word_ladder_with_non_existing_end_word_results_in_error() {
-        let mut dictionary: Dictionary = new_dictionary(vec!["foo"]);
+        let dictionary: Dictionary = new_dictionary(vec!["foo"]);
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_err(), true);
         assert_eq!(result.unwrap_err(), WordNotFoundError { word: String::from("bar") })
@@ -71,7 +71,7 @@ mod tests {
 
     #[test]
     fn no_word_ladder_found_results_in_empty_list() {
-        let mut dictionary: Dictionary = new_dictionary(vec!["foo", "bar"]);
+        let dictionary: Dictionary = new_dictionary(vec!["foo", "bar"]);
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_ok(), true);
         assert_eq!(result.unwrap().len(), 0);
@@ -79,14 +79,14 @@ mod tests {
 
     #[test]
     fn word_ladder_with_one_rung() {
-        let mut dictionary: Dictionary = new_dictionary(vec!["dog", "fog"]);
+        let dictionary: Dictionary = new_dictionary(vec!["dog", "fog"]);
         let result = word_ladder("dog","fog", dictionary);
         assert_eq!(result.is_ok(), true);
         assert_eq!(result.unwrap(), [String::from("dog"),String::from("fog")]);
     }
     #[test]
     fn another_word_ladder_with_one_rung() {
-        let mut dictionary: Dictionary = new_dictionary(vec!["dog", "fog"]);
+        let dictionary: Dictionary = new_dictionary(vec!["dog", "fog"]);
         let result = word_ladder("fog","dog", dictionary);
         assert_eq!(result.is_ok(), true);
         assert_eq!(result.unwrap(), [String::from("fog"),String::from("dog")]);
