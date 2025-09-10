@@ -4,22 +4,22 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
-Dictionary	/Users/christophethibaut/Coding/rust-word-ladder/src/dictionary.rs	/^pub type Dictionary = HashSet<String>;$/;"	T
-WordNotFoundError	/Users/christophethibaut/Coding/rust-word-ladder/src/error.rs	/^pub struct WordNotFoundError {$/;"	s
-another_word_ladder_with_one_rung	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^    fn another_word_ladder_with_one_rung() {$/;"	f
-dictionary_from_file	/Users/christophethibaut/Coding/rust-word-ladder/src/dictionary.rs	/^pub fn dictionary_from_file(file_name: &str) -> Result<Dictionary,Error> {$/;"	f
-fmt	/Users/christophethibaut/Coding/rust-word-ladder/src/error.rs	/^    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {$/;"	f
-follow_ladder	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^fn follow_ladder(ladder: HashMap<String, Option<String>>, start: &str, end: &str) -> Vec<String> {$/;"	f
-greeting	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^pub fn greeting(name: Option<&str>) -> String {$/;"	f
-loading_an_external_file	/Users/christophethibaut/Coding/rust-word-ladder/src/dictionary.rs	/^    fn loading_an_external_file() {$/;"	f
-main	/Users/christophethibaut/Coding/rust-word-ladder/src/main.rs	/^fn main() {$/;"	f
-neighbor	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^fn neighbor(a: &str, b: &str) -> bool {$/;"	f
-new_dictionary	/Users/christophethibaut/Coding/rust-word-ladder/src/dictionary.rs	/^pub fn new_dictionary(words: Vec<&str>) -> Dictionary {$/;"	f
-no_word_ladder_found_results_in_empty_list	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^    fn no_word_ladder_found_results_in_empty_list() {$/;"	f
-test_greeting_with_none_argument_is_just_hello_world	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^    fn test_greeting_with_none_argument_is_just_hello_world() {$/;"	f
-test_greeting_with_some_name_is_hello_name	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^    fn test_greeting_with_some_name_is_hello_name() {$/;"	f
-word_ladder	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^pub fn word_ladder(start: &str, end: &str, mut dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {$/;"	f
-word_ladder_with_non_existing_end_word_results_in_error	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^    fn word_ladder_with_non_existing_end_word_results_in_error() {$/;"	f
-word_ladder_with_non_existing_start_word_results_in_error	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^    fn word_ladder_with_non_existing_start_word_results_in_error() {$/;"	f
-word_ladder_with_one_rung	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^    fn word_ladder_with_one_rung() {$/;"	f
-word_ladder_with_two_rungs	/Users/christophethibaut/Coding/rust-word-ladder/src/word_ladder.rs	/^    fn word_ladder_with_two_rungs() {$/;"	f
+Dictionary	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/dictionary.rs	/^pub type Dictionary = HashSet<String>;$/;"	T
+WordNotFoundError	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/error.rs	/^pub struct WordNotFoundError {$/;"	s
+another_word_ladder_with_one_rung	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^    fn another_word_ladder_with_one_rung() {$/;"	f
+dictionary_from_file	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/dictionary.rs	/^pub fn dictionary_from_file(file_name: &str) -> Result<Dictionary,Error> {$/;"	f
+fmt	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/error.rs	/^    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {$/;"	f
+follow_ladder	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^fn follow_ladder(ladder: HashMap<String, Option<String>>, start: &str, end: &str) -> Vec<String> {$/;"	f
+greeting	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^pub fn greeting(name: Option<&str>) -> String {$/;"	f
+loading_an_external_file	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/dictionary.rs	/^    fn loading_an_external_file() {$/;"	f
+main	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/main.rs	/^fn main() {$/;"	f
+neighbor	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^fn neighbor(a: &str, b: &str) -> bool {$/;"	f
+new_dictionary	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/dictionary.rs	/^pub fn new_dictionary(words: Vec<&str>) -> Dictionary {$/;"	f
+no_word_ladder_found_results_in_empty_list	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^    fn no_word_ladder_found_results_in_empty_list() {$/;"	f
+test_greeting_with_none_argument_is_just_hello_world	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^    fn test_greeting_with_none_argument_is_just_hello_world() {$/;"	f
+test_greeting_with_some_name_is_hello_name	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^    fn test_greeting_with_some_name_is_hello_name() {$/;"	f
+word_ladder	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^pub fn word_ladder(start: &str, end: &str, mut dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {$/;"	f
+word_ladder_with_non_existing_end_word_results_in_error	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^    fn word_ladder_with_non_existing_end_word_results_in_error() {$/;"	f
+word_ladder_with_non_existing_start_word_results_in_error	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^    fn word_ladder_with_non_existing_start_word_results_in_error() {$/;"	f
+word_ladder_with_one_rung	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^    fn word_ladder_with_one_rung() {$/;"	f
+word_ladder_with_two_rungs	/Users/christophethibaut/Coding/tcrdd-first/word-ladder/src/word_ladder.rs	/^    fn word_ladder_with_two_rungs() {$/;"	f
