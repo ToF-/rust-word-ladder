@@ -78,9 +78,7 @@ mod tests {
     }
     #[test]
     fn another_word_ladder_with_one_rung() {
-        let dictionary: Dictionary = new_dictionary(vec!["dog", "fog"]);
-        let result = word_ladder("fog","dog", dictionary);
-        assert_eq!(result.is_ok(), true);
-        assert_eq!(result.unwrap(), [String::from("fog"),String::from("dog")]);
+        assert_eq!(word_ladder("fog","dog",new_dictionary(vec!["dog","fog"])).unwrap(),
+            [String::from("fog"),String::from("dog")]);
     }
 }
