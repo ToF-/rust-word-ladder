@@ -24,6 +24,7 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
     } else if ! dictionary.contains(end) {
         Err(WordNotFoundError { word: end.to_string() })
     } else {
+        let queue: Vec<&str> = vec![start];
         let mut first: String = String::from("");
         let mut last: String = String::from("");
         let mut dict = dictionary.clone();
