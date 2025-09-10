@@ -18,6 +18,24 @@ fn neighbor(a: &str, b: &str) -> bool {
         .count() == 1
 }
 
+fn follow_ladder(ladder: HashMap<String, Option<String>>, start: &str, end: &str) -> Vec<String> {
+    let mut result: Vec<String> = vec![end.to_string()];
+    let mut rung: Option<String> = Some(end.to_string());
+    while let Some(rung) = ladder.get(&rung.clone().unwrap()) {
+        match rung {
+            Some(word) => { 
+                result.insert(0, word.to_string());
+                if word == start {
+                    return result
+                };
+            },
+            None => {
+                return vec![]
+            }
+        }
+    };
+    return vec![]
+}
 pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {
     if ! dictionary.contains(start) {
         Err(WordNotFoundError { word: start.to_string() })
@@ -34,7 +52,10 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
                 .into_iter()
                 .filter(|w| neighbor(rung, w));
             for next in neighors {
-                ladder.insert(next, Some(rung.to_string()));
+                ladder.insert(next.clone(), Some(rung.to_string()));
+                if next.clone() == end {
+                    return Ok(follow_ladder(ladder, start, end))
+                }
             }
         };
         println!("{:?}", ladder);
