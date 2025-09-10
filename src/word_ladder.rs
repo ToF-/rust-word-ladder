@@ -13,11 +13,9 @@ pub fn greeting(name: Option<&str>) -> String {
 
 fn neighbor(a: &str, b: &str) -> bool {
     assert!(a.len() == b.len());
-    let a_chars = a.chars();
-    let b_chars = b.chars();
-    let mut zip = a_chars.zip(b_chars);
-    let count = zip.filter(|(a_char, b_char)| a_char != b_char).count();
-    count == 1
+    a.chars().zip(b.chars())
+        .filter(|(a_char, b_char)| a_char != b_char)
+        .count() == 1
 }
 
 pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec<String>,WordNotFoundError> {
