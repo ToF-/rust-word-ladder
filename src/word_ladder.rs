@@ -24,6 +24,7 @@ pub fn word_ladder(start: &str, end: &str, dictionary: Dictionary) -> Result<Vec
     } else if ! dictionary.contains(end) {
         Err(WordNotFoundError { word: end.to_string() })
     } else {
+        let first: String = start.to_string();
         if neighbor(start, end) {
             Ok(vec![String::from(start), String::from(end)])
         } else {
