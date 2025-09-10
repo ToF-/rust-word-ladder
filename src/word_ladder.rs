@@ -66,7 +66,7 @@ mod tests {
 
     #[test]
     fn word_ladder_with_non_existing_start_word_results_in_error() {
-        let dictionary: Dictionary = Dictionary::new();
+        let dictionary: Dictionary = new_dictionary(vec![]);
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_err(), true);
         assert_eq!(result.unwrap_err(), WordNotFoundError { word: String::from("foo") })
