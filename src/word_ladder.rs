@@ -2,6 +2,8 @@ use std::error::Error;
 use crate::error::WordNotFoundError;
 use std::collections::HashSet;
 
+pub type Dictionary = HashSet<String>;
+
 pub fn greeting(name: Option<&str>) -> String {
     match name {
         Some(s) => format!("hello, {}!", s),
