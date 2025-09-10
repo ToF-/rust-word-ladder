@@ -72,27 +72,8 @@ pub fn word_ladder(start: &str, end: &str, mut dictionary: Dictionary) -> Result
                 }
             }
         };
-
-
-        let mut first: String = String::from("");
-        let mut last: String = String::from("");
-        let mut dict = dictionary.clone();
-        match dict.take(start) {
-            Some(word) => {
-                let first = word.to_string();
-                let neighbors: Dictionary = dict.into_iter().filter(|w| neighbor(&first, w)).collect();
-                match neighbors.iter().next() {
-                    Some(word) => {
-                        let last = word.to_string();
-                        return Ok(vec![first, last])
-                    },
-                    None => {} ,
-                };
-            },
-            None => {},
-            }
-            Ok(vec![])
-        }
+        Ok(vec![])
+    }
 }
 
 #[cfg(test)]
