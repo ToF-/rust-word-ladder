@@ -82,9 +82,7 @@ mod tests {
 
     #[test]
     fn no_word_ladder_found_results_in_empty_list() {
-        let mut dictionary: Dictionary = Dictionary::new();
-        let _ = dictionary.insert(String::from("foo"));
-        let _ = dictionary.insert(String::from("bar"));
+        let mut dictionary: Dictionary = new_dictionary(vec!["foo", "bar"]);
         let result = word_ladder("foo","bar", dictionary);
         assert_eq!(result.is_ok(), true);
         assert_eq!(result.unwrap().len(), 0);
