@@ -48,7 +48,11 @@ mod tests {
     use super::*;
 
     fn new_dictionary(words: Vec<&str>) -> Dictionary {
-        Dictionary::new()
+        let mut result = Dictionary::new();
+        for word in words {
+            let _ = result.insert(word.to_string());
+        };
+        result
     }
     #[test]
     fn test_greeting_with_none_argument_is_just_hello_world() {
